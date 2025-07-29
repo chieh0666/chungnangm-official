@@ -116,9 +116,9 @@
                         <div x-data="{ 
                             currentImage: 0,
                             images: [
-                                'https://placehold.co/400x400/a3e635/ffffff?text=Product+1.1',
-                                'https://placehold.co/400x400/a3e635/ffffff?text=Product+1.2',
-                                'https://placehold.co/400x400/a3e635/ffffff?text=Product+1.3'
+                                './img/products/thumb/medium-400(1).jpg',
+                                './img/products/thumb/medium-400(2).jpg',
+                                './img/products/thumb/medium-400(3).jpg'
                             ]
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
@@ -140,11 +140,11 @@
                                 <button @click="isModalOpen = true; modal = { 
                                     title: '有機培養土', 
                                     images: [
-                                        'https://placehold.co/800x800/a3e635/ffffff?text=Detail+1.1',
-                                        'https://placehold.co/800x800/a3e635/ffffff?text=Detail+1.2',
-                                        'https://placehold.co/800x800/a3e635/ffffff?text=Detail+1.3'
+                                        './img/products/medium-800(1).jpg',
+                                        './img/products/medium-800(2).jpg',
+                                        './img/products/medium-800(3).jpg'
                                     ], 
-                                    description: '我們的有機培養土採用天然材料發酵而成，富含植物生長所需的氮、磷、鉀及多種微量元素。質地疏鬆，排水與通氣性極佳，能有效促進根系發展，是您盆栽、菜園的最佳選擇。',
+                                    description: '我們的有機培養土採用天然材料發酵而成，富含植物生長所需的微量元素。質地疏鬆，排水與通氣性極佳，能有效促進根系發展，是您盆栽、菜園的最佳選擇。',
                                     currentImage: 0 
                                 }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
