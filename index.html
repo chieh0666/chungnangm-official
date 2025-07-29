@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中南園藝資材 – 提供園藝所需的各種資材</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter & Noto Sans TC -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Alpine.js for interactivity (deferred to load after DOM) -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
         /* 使用 Noto Sans TC 作為主要字體 */
@@ -42,47 +39,45 @@
         .modal-leave-active {
             transition: all 0.2s ease-in;
         }
+        .carousel-button {
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        .group:hover .carousel-button {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Alpine.js 資料初始化 -->
     <div x-data="{ 
         isMenuOpen: false, 
         isModalOpen: false, 
-        modal: { title: '', image: '', description: '' } 
+        modal: { title: '', images: [], description: '', currentImage: 0 } 
     }" @keydown.escape.window="isModalOpen = false">
 
-        <!-- 1. 導覽列 -->
         <header class="sticky top-0 z-50 w-full shadow-md backdrop-blur-nav">
             <div class="container mx-auto px-6 py-4">
                 <div class="flex items-center justify-between">
-                    <!-- Logo -->
                     <a href="#home" class="text-2xl font-bold text-green-800">
                         <img src="./img/chungnangm_logo3.webp" alt="中南園藝資材 Logo" class="h-10 inline-block mr-2">
                         中南園藝資材
                     </a>
-                    <!-- Desktop Menu -->
                     <nav class="hidden md:flex space-x-8">
                         <a href="#home" class="text-gray-600 hover:text-green-700 transition duration-300">首頁</a>
                         <a href="#products" class="text-gray-600 hover:text-green-700 transition duration-300">商品展示</a>
                         <a href="#about" class="text-gray-600 hover:text-green-700 transition duration-300">關於我們</a>
                         <a href="#contact" class="text-gray-600 hover:text-green-700 transition duration-300">聯絡我們</a>
                     </nav>
-                    <!-- Mobile Menu Button -->
                     <div class="md:hidden">
                         <button @click="isMenuOpen = !isMenuOpen" class="text-gray-600 focus:outline-none">
                             <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                <!-- Hamburger Icon -->
                                 <path x-show="!isMenuOpen" d="M4 6h16M4 12h16m-7 6h7"></path>
-                                <!-- Close Icon -->
                                 <path x-show="isMenuOpen" d="M6 18L18 6M6 6l12 12" style="display: none;"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
             </div>
-            <!-- Mobile Menu with Animation -->
             <div x-show="isMenuOpen"
                  @click.away="isMenuOpen = false"
                  class="md:hidden bg-white absolute w-full shadow-lg"
@@ -101,7 +96,6 @@
         </header>
 
         <main>
-            <!-- 2. Banner 圖片 -->
             <section id="home" class="relative h-[60vh] md:h-[80vh] bg-cover bg-top" style="background-image: url('./img/IMG_3927.webp');">
                 <div class="absolute inset-0 bg-black bg-opacity-40"></div>
                 <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
@@ -113,115 +107,327 @@
                 </div>
             </section>
 
-            <!-- 3. 商品陳列展示 -->
             <section id="products" class="py-20 bg-white">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">精選商品</h2>
                     <p class="text-center text-gray-600 mb-12">我們精心挑選，只為給您最好的園藝體驗。</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Product Card 1 -->
-                        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
-                            <img src="https://placehold.co/400x400/a3e635/ffffff" alt="有機培養土" class="w-full aspect-square object-cover group-hover:opacity-90 transition duration-300">
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                'https://placehold.co/400x400/a3e635/ffffff?text=Product+1.1',
+                                'https://placehold.co/400x400/a3e635/ffffff?text=Product+1.2',
+                                'https://placehold.co/400x400/a3e635/ffffff?text=Product+1.3'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="有機培養土" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">有機培養土</h3>
                                 <p class="text-gray-600 text-sm mb-4">富含多種有機質，通氣性佳，適合各種室內外植物。</p>
-                                <button @click="isModalOpen = true; modal = { title: '有機培養土', image: 'https://placehold.co/800x800/a3e635/ffffff', description: '我們的有機培養土採用天然材料發酵而成，富含植物生長所需的氮、磷、鉀及多種微量元素。質地疏鬆，排水與通氣性極佳，能有效促進根系發展，是您盆栽、菜園的最佳選擇。' }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '有機培養土', 
+                                    images: [
+                                        'https://placehold.co/800x800/a3e635/ffffff?text=Detail+1.1',
+                                        'https://placehold.co/800x800/a3e635/ffffff?text=Detail+1.2',
+                                        'https://placehold.co/800x800/a3e635/ffffff?text=Detail+1.3'
+                                    ], 
+                                    description: '我們的有機培養土採用天然材料發酵而成，富含植物生長所需的氮、磷、鉀及多種微量元素。質地疏鬆，排水與通氣性極佳，能有效促進根系發展，是您盆栽、菜園的最佳選擇。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Product Card 2 -->
-                        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
-                            <img src="https://placehold.co/400x400/9ca3af/ffffff" alt="不鏽鋼園藝工具組" class="w-full aspect-square object-cover group-hover:opacity-90 transition duration-300">
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                'https://placehold.co/400x400/9ca3af/ffffff?text=Product+2.1',
+                                'https://placehold.co/400x400/9ca3af/ffffff?text=Product+2.2',
+                                'https://placehold.co/400x400/9ca3af/ffffff?text=Product+2.3'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="不鏽鋼園藝工具組" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">不鏽鋼園藝工具組</h3>
                                 <p class="text-gray-600 text-sm mb-4">耐用防鏽，人體工學設計，包含鏟、耙、叉三件組。</p>
-                                <button @click="isModalOpen = true; modal = { title: '不鏽鋼園藝工具組', image: 'https://placehold.co/800x800/9ca3af/ffffff', description: '此款三件式園藝工具組由高品質不鏽鋼打造，堅固耐用且不易生鏽。手柄採用人體工學設計，握感舒適，能減輕長時間工作的疲勞。無論是鬆土、除草還是移植，都能輕鬆應對。' }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '不鏽鋼園藝工具組', 
+                                    images: [
+                                        'https://placehold.co/800x800/9ca3af/ffffff?text=Detail+2.1',
+                                        'https://placehold.co/800x800/9ca3af/ffffff?text=Detail+2.2',
+                                        'https://placehold.co/800x800/9ca3af/ffffff?text=Detail+2.3'
+                                    ], 
+                                    description: '此款三件式園藝工具組由高品質不鏽鋼打造，堅固耐用且不易生鏽。手柄採用人體工學設計，握感舒適，能減輕長時間工作的疲勞。無論是鬆土、除草還是移植，都能輕鬆應對。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Product Card 3 -->
-                        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
-                            <img src="https://placehold.co/400x400/60a5fa/ffffff" alt="智慧自動澆水器" class="w-full aspect-square object-cover group-hover:opacity-90 transition duration-300">
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                'https://placehold.co/400x400/60a5fa/ffffff?text=Product+3.1',
+                                'https://placehold.co/400x400/60a5fa/ffffff?text=Product+3.2',
+                                'https://placehold.co/400x400/60a5fa/ffffff?text=Product+3.3'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="智慧自動澆水器" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">智慧自動澆水器</h3>
                                 <p class="text-gray-600 text-sm mb-4">定時定量，出差旅行也不怕，讓植物時刻保持水潤。</p>
-                                <button @click="isModalOpen = true; modal = { title: '智慧自動澆水器', image: 'https://placehold.co/800x800/60a5fa/ffffff', description: '再也不用擔心忘記澆水！這款智慧澆水器可設定澆水頻率與水量，精準滿足不同植物的需求。安裝簡單，適用於多種盆栽。是現代忙碌都市人的園藝好幫手。' }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '智慧自動澆水器', 
+                                    images: [
+                                        'https://placehold.co/800x800/60a5fa/ffffff?text=Detail+3.1',
+                                        'https://placehold.co/800x800/60a5fa/ffffff?text=Detail+3.2',
+                                        'https://placehold.co/800x800/60a5fa/ffffff?text=Detail+3.3'
+                                    ], 
+                                    description: '再也不用擔心忘記澆水！這款智慧澆水器可設定澆水頻率與水量，精準滿足不同植物的需求。安裝簡單，適用於多種盆栽。是現代忙碌都市人的園藝好幫手。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Product Card 4 -->
-                        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
-                            <img src="https://placehold.co/400x400/fcd34d/ffffff" alt="精品陶瓷花盆" class="w-full aspect-square object-cover group-hover:opacity-90 transition duration-300">
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                'https://placehold.co/400x400/fcd34d/ffffff?text=Product+4.1',
+                                'https://placehold.co/400x400/fcd34d/ffffff?text=Product+4.2',
+                                'https://placehold.co/400x400/fcd34d/ffffff?text=Product+4.3'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="精品陶瓷花盆" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">精品陶瓷花盆</h3>
                                 <p class="text-gray-600 text-sm mb-4">簡約設計，高溫燒製，透氣性佳，提升居家品味。</p>
-                                <button @click="isModalOpen = true; modal = { title: '精品陶瓷花盆', image: 'https://placehold.co/800x800/fcd34d/ffffff', description: '我們的陶瓷花盆由資深工匠手工製作，經高溫燒製而成。不僅外型簡約優雅，能融入各種家居風格，其良好的透氣性更有助於植物根部健康生長。底部帶有排水孔，設計貼心實用。' }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '精品陶瓷花盆', 
+                                    images: [
+                                        'https://placehold.co/800x800/fcd34d/ffffff?text=Detail+4.1',
+                                        'https://placehold.co/800x800/fcd34d/ffffff?text=Detail+4.2',
+                                        'https://placehold.co/800x800/fcd34d/ffffff?text=Detail+4.3'
+                                    ], 
+                                    description: '我們的陶瓷花盆由資深工匠手工製作，經高溫燒製而成。不僅外型簡約優雅，能融入各種家居風格，其良好的透氣性更有助於植物根部健康生長。底部帶有排水孔，設計貼心實用。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
                                 </button>
                             </div>
                         </div>
 
-                        <!-- 新增的商品列 -->
-                        <!-- Product Card 5 -->
-                        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
-                            <img src="https://placehold.co/400x400/818cf8/ffffff" alt="長效緩釋肥" class="w-full aspect-square object-cover group-hover:opacity-90 transition duration-300">
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                'https://placehold.co/400x400/818cf8/ffffff?text=Product+5.1',
+                                'https://placehold.co/400x400/818cf8/ffffff?text=Product+5.2',
+                                'https://placehold.co/400x400/818cf8/ffffff?text=Product+5.3'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="長效緩釋肥" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">長效緩釋肥</h3>
                                 <p class="text-gray-600 text-sm mb-4">一次施用，肥效可持續3-4個月，均衡提供養分。</p>
-                                <button @click="isModalOpen = true; modal = { title: '長效緩釋肥', image: 'https://placehold.co/800x800/818cf8/ffffff', description: '專為懶人設計的長效肥料！採用特殊包膜技術，養分會隨著澆水緩慢釋放，一次施用即可滿足植物數個月的生長需求，避免肥傷，讓您的植物健康茁壯。' }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '長效緩釋肥', 
+                                    images: [
+                                        'https://placehold.co/800x800/818cf8/ffffff?text=Detail+5.1',
+                                        'https://placehold.co/800x800/818cf8/ffffff?text=Detail+5.2',
+                                        'https://placehold.co/800x800/818cf8/ffffff?text=Detail+5.3'
+                                    ], 
+                                    description: '專為懶人設計的長效肥料！採用特殊包膜技術，養分會隨著澆水緩慢釋放，一次施用即可滿足植物數個月的生長需求，避免肥傷，讓您的植物健康茁壯。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Product Card 6 -->
-                        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
-                            <img src="https://placehold.co/400x400/f472b6/ffffff" alt="造型修枝剪" class="w-full aspect-square object-cover group-hover:opacity-90 transition duration-300">
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                'https://placehold.co/400x400/f472b6/ffffff?text=Product+6.1',
+                                'https://placehold.co/400x400/f472b6/ffffff?text=Product+6.2',
+                                'https://placehold.co/400x400/f472b6/ffffff?text=Product+6.3'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="造型修枝剪" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">造型修枝剪</h3>
                                 <p class="text-gray-600 text-sm mb-4">SK5高碳鋼刀頭，鋒利省力，適合盆景與花藝修剪。</p>
-                                <button @click="isModalOpen = true; modal = { title: '造型修枝剪', image: 'https://placehold.co/800x800/f472b6/ffffff', description: '一把好的剪刀能讓園藝工作事半功倍。我們的修枝剪採用日本SK5高碳鋼，刀口鋒利，剪切平整不傷枝條。輕巧的設計讓您能長時間使用而不感疲累，是修剪塑形的好幫手。' }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '造型修枝剪', 
+                                    images: [
+                                        'https://placehold.co/800x800/f472b6/ffffff?text=Detail+6.1',
+                                        'https://placehold.co/800x800/f472b6/ffffff?text=Detail+6.2',
+                                        'https://placehold.co/800x800/f472b6/ffffff?text=Detail+6.3'
+                                    ], 
+                                    description: '一把好的剪刀能讓園藝工作事半功倍。我們的修枝剪採用日本SK5高碳鋼，刀口鋒利，剪切平整不傷枝條。輕巧的設計讓您能長時間使用而不感疲累，是修剪塑形的好幫手。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Product Card 7 -->
-                        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
-                            <img src="https://placehold.co/400x400/fb923c/ffffff" alt="天然椰纖塊" class="w-full aspect-square object-cover group-hover:opacity-90 transition duration-300">
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                'https://placehold.co/400x400/fb923c/ffffff?text=Product+7.1',
+                                'https://placehold.co/400x400/fb923c/ffffff?text=Product+7.2',
+                                'https://placehold.co/400x400/fb923c/ffffff?text=Product+7.3'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="天然椰纖塊" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">天然椰纖塊</h3>
                                 <p class="text-gray-600 text-sm mb-4">優良的保水與透氣介質，可混合土壤或鋪面使用。</p>
-                                <button @click="isModalOpen = true; modal = { title: '天然椰纖塊', image: 'https://placehold.co/800x800/fb923c/ffffff', description: '天然椰殼製成的環保介質，具有絕佳的保水性與透氣性。可與培養土混合使用，改善土質，增加根部透氣；也可作為鋪面材料，美觀又能防止雜草叢生。' }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '天然椰纖塊', 
+                                    images: [
+                                        'https://placehold.co/800x800/fb923c/ffffff?text=Detail+7.1',
+                                        'https://placehold.co/800x800/fb923c/ffffff?text=Detail+7.2',
+                                        'https://placehold.co/800x800/fb923c/ffffff?text=Detail+7.3'
+                                    ], 
+                                    description: '天然椰殼製成的環保介質，具有絕佳的保水性與透氣性。可與培養土混合使用，改善土質，增加根部透氣；也可作為鋪面材料，美觀又能防止雜草叢生。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Product Card 8 -->
-                        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
-                            <img src="https://placehold.co/400x400/4ade80/ffffff" alt="植物爬藤架" class="w-full aspect-square object-cover group-hover:opacity-90 transition duration-300">
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                'https://placehold.co/400x400/4ade80/ffffff?text=Product+8.1',
+                                'https://placehold.co/400x400/4ade80/ffffff?text=Product+8.2',
+                                'https://placehold.co/400x400/4ade80/ffffff?text=Product+8.3'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="植物爬藤架" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">植物爬藤架</h3>
                                 <p class="text-gray-600 text-sm mb-4">可自由組合造型，引導藤蔓植物生長，美化牆面。</p>
-                                <button @click="isModalOpen = true; modal = { title: '植物爬藤架', image: 'https://placehold.co/800x800/4ade80/ffffff', description: '為您的攀藤植物打造一個家！此款爬藤架可依您的需求自由拼接組合，提供植物穩固的支撐，引導其向上生長，形成一道美麗的綠色牆面，為您的空間增添立體感。' }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '植物爬藤架', 
+                                    images: [
+                                        'https://placehold.co/800x800/4ade80/ffffff?text=Detail+8.1',
+                                        'https://placehold.co/800x800/4ade80/ffffff?text=Detail+8.2',
+                                        'https://placehold.co/800x800/4ade80/ffffff?text=Detail+8.3'
+                                    ], 
+                                    description: '為您的攀藤植物打造一個家！此款爬藤架可依您的需求自由拼接組合，提供植物穩固的支撐，引導其向上生長，形成一道美麗的綠色牆面，為您的空間增添立體感。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
                                 </button>
                             </div>
                         </div>
-                        <!-- 您可以在此處複製貼上整個商品卡片區塊來新增更多商品 -->
                     </div>
                 </div>
             </section>
 
-            <!-- 4. 關於我們 -->
             <section id="about" class="py-20 bg-gray-50">
                 <div class="container mx-auto px-6">
                     <div class="flex flex-col md:flex-row items-center gap-12">
@@ -229,9 +435,9 @@
                             <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=2070&auto=format&fit=crop" alt="關於我們" class="rounded-lg shadow-xl w-full">
                         </div>
                         <div class="md:w-1/2">
-                            <h2 class="text-3xl font-bold mb-4 text-gray-800">關於綠意盎然</h2>
+                            <h2 class="text-3xl font-bold mb-4 text-gray-800">關於中南園藝</h2>
                             <p class="text-gray-600 mb-4 leading-relaxed">
-                                「綠意盎然」不僅僅是一個品牌，它代表著我們對自然與生活的熱愛。我們相信，每個人心中都有一片嚮往的綠地。創立於2015年，我們致力於尋找並提供最優質、最實用的園藝資材，從專業農場到都市陽台，我們希望幫助每一位園藝愛好者，都能輕鬆地創造屬於自己的綠色空間。
+                                「中南園藝」不僅僅是一個品牌，它代表著我們對自然與生活的熱愛。我們相信，每個人心中都有一片嚮往的綠地。創立於2015年，我們致力於尋找並提供最優質、最實用的園藝資材，從專業農場到都市陽台，我們希望幫助每一位園藝愛好者，都能輕鬆地創造屬於自己的綠色空間。
                             </p>
                             <p class="text-gray-600 leading-relaxed">
                                 我們的團隊由一群充滿熱情的園藝專家組成，我們親自測試每一項產品，確保它們的品質與效能。我們相信，好的工具與材料，是成功園藝的第一步。
@@ -241,13 +447,11 @@
                 </div>
             </section>
 
-            <!-- 5. 聯絡我們 -->
             <section id="contact" class="py-20 bg-white">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">聯絡我們</h2>
                     <div class="max-w-4xl mx-auto bg-gray-50 p-8 rounded-lg shadow-lg">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- Contact Info -->
                             <div>
                                 <h3 class="text-2xl font-semibold mb-4">取得聯繫</h3>
                                 <p class="text-gray-600 mb-6">有任何問題或合作提案嗎？歡迎透過以下方式與我們聯繫，我們將盡快回覆您。</p>
@@ -274,16 +478,14 @@
 
         <footer class="bg-gray-800 text-white py-8">
             <div class="container mx-auto px-6 text-center">
-                <p>&copy; 2024 綠意盎然園藝有限公司. All Rights Reserved.</p>
+                <p>&copy; 2024 中南園藝有限公司. All Rights Reserved.</p>
             </div>
         </footer>
 
-        <!-- 商品詳情彈出視窗 (Modal) -->
         <div x-show="isModalOpen"
              class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
              style="display: none;">
 
-            <!-- Modal Backdrop -->
             <div @click="isModalOpen = false" 
                  class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"
                  x-show="isModalOpen"
@@ -294,7 +496,6 @@
                  x-transition:leave-start="opacity-100"
                  x-transition:leave-end="opacity-0"></div>
 
-            <!-- Modal Content -->
             <div @click.away="isModalOpen = false"
                  class="relative bg-white w-full h-full max-w-6xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden"
                  x-show="isModalOpen"
@@ -305,10 +506,22 @@
                  x-transition:leave-start="opacity-100 scale-100"
                  x-transition:leave-end="opacity-0 scale-95">
                 <div class="flex flex-col md:flex-row h-full">
-                    <!-- Image Section -->
-                    <div class="w-full md:w-[70%] h-1/2 md:h-full bg-cover bg-center" :style="`background-image: url('${modal.image}')`">
+                    <div class="relative w-full md:w-[70%] h-1/2 md:h-full bg-gray-200">
+                        <template x-for="(image, index) in modal.images" :key="index">
+                            <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-300" 
+                                 :style="`background-image: url('${image}')`"
+                                 x-show="modal.currentImage === index">
+                            </div>
+                        </template>
+                         <div class="absolute inset-0 flex justify-between items-center px-4">
+                            <button @click="modal.currentImage = (modal.currentImage === 0) ? modal.images.length - 1 : modal.currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-3">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button @click="modal.currentImage = (modal.currentImage === modal.images.length - 1) ? 0 : modal.currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-3">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+                        </div>
                     </div>
-                    <!-- Details Section -->
                     <div class="w-full md:w-[30%] p-6 md:p-8 flex flex-col justify-center overflow-y-auto">
                         <div>
                             <h3 class="text-2xl md:text-3xl font-bold mb-4" x-text="modal.title"></h3>
@@ -317,14 +530,11 @@
                     </div>
                 </div>
 
-                <!-- Close Button -->
                 <button @click="isModalOpen = false" class="absolute top-4 right-4 bg-black bg-opacity-25 text-white rounded-full p-2 hover:bg-opacity-50 transition z-10">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
         </div>
-
     </div>
-
 </body>
 </html>
