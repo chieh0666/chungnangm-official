@@ -272,9 +272,9 @@
                         <div x-data="{ 
                             currentImage: 0,
                             images: [
-                                'https://placehold.co/400x400/818cf8/ffffff?text=Product+5.1',
-                                'https://placehold.co/400x400/818cf8/ffffff?text=Product+5.2',
-                                'https://placehold.co/400x400/818cf8/ffffff?text=Product+5.3'
+                                './img/products/thumb/power-400(1).jpg',
+                                './img/products/thumb/power-400(2).jpg',
+                                './img/products/thumb/power-400(3).jpg'
                             ]
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
@@ -296,9 +296,9 @@
                                 <button @click="isModalOpen = true; modal = { 
                                     title: '長效緩釋肥', 
                                     images: [
-                                        'https://placehold.co/800x800/818cf8/ffffff?text=Detail+5.1',
-                                        'https://placehold.co/800x800/818cf8/ffffff?text=Detail+5.2',
-                                        'https://placehold.co/800x800/818cf8/ffffff?text=Detail+5.3'
+                                        './img/products/power-800(1).jpg',
+                                        './img/products/power-800(2).jpg',
+                                        './img/products/power-800(3).jpg'
                                     ], 
                                     description: '專為懶人設計的長效肥料！採用特殊包膜技術，養分會隨著澆水緩慢釋放，一次施用即可滿足植物數個月的生長需求，避免肥傷，讓您的植物健康茁壯。',
                                     currentImage: 0 
@@ -350,9 +350,9 @@
                         <div x-data="{ 
                             currentImage: 0,
                             images: [
-                                'https://placehold.co/400x400/fb923c/ffffff?text=Product+7.1',
-                                'https://placehold.co/400x400/fb923c/ffffff?text=Product+7.2',
-                                'https://placehold.co/400x400/fb923c/ffffff?text=Product+7.3'
+                                './img/products/thumb/medium-400(6).jpg',
+                                './img/products/thumb/medium-400(5).jpg',
+                                './img/products/thumb/medium-400(4).jpg'
                             ]
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
@@ -369,14 +369,14 @@
                                 </div>
                             </div>
                             <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">天然椰纖塊</h3>
+                                <h3 class="text-xl font-semibold mb-2">天然椰纖塊、水苔</h3>
                                 <p class="text-gray-600 text-sm mb-4">優良的保水與透氣介質，可混合土壤或鋪面使用。</p>
                                 <button @click="isModalOpen = true; modal = { 
-                                    title: '天然椰纖塊', 
+                                    title: '天然椰纖塊、水苔', 
                                     images: [
-                                        'https://placehold.co/800x800/fb923c/ffffff?text=Detail+7.1',
-                                        'https://placehold.co/800x800/fb923c/ffffff?text=Detail+7.2',
-                                        'https://placehold.co/800x800/fb923c/ffffff?text=Detail+7.3'
+                                        './img/products/medium-800(6).jpg',
+                                        './img/products/medium-800(5).jpg',
+                                        './img/products/medium-800(4).jpg'
                                     ], 
                                     description: '天然椰殼製成的環保介質，具有絕佳的保水性與透氣性。可與培養土混合使用，改善土質，增加根部透氣；也可作為鋪面材料，美觀又能防止雜草叢生。',
                                     currentImage: 0 
@@ -418,6 +418,160 @@
                                         'https://placehold.co/800x800/4ade80/ffffff?text=Detail+8.3'
                                     ], 
                                     description: '為您的攀藤植物打造一個家！此款爬藤架可依您的需求自由拼接組合，提供植物穩固的支撐，引導其向上生長，形成一道美麗的綠色牆面，為您的空間增添立體感。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+						
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                './img/products/thumb/medium-400(7).jpg',
+                                './img/products/thumb/medium-400(8).jpg',
+                                './img/products/thumb/medium-400(9).jpg'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="發泡石、蛭石、火山石" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">發泡石、蛭石、火山石</h3>
+                                <p class="text-gray-600 text-sm mb-4">改善土壤結構、增加通氣性與排水性，或作為無土栽培的介質，經常會使用到發泡石、蛭石和火山石這三種材料。</p>
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '發泡石、蛭石、火山石', 
+                                    images: [
+                                        './img/products/medium-800(7).jpg',
+                                        './img/products/medium-800(8).jpg',
+                                        './img/products/medium-800(9).jpg'
+                                    ], 
+                                    description: '在園藝和景觀應用中，為了改善土壤結構、增加通氣性與排水性，或作為無土栽培的介質，經常會使用到發泡石、蛭石和火山石這三種材料。它們雖然都具有多孔隙、質地輕的特點，但在來源、特性及最佳用途上卻各有不同。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+						
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                './img/products/thumb/fertilizer-400(1).jpg',
+                                './img/products/thumb/fertilizer-400(2).jpg',
+                                './img/products/thumb/fertilizer-400(3).jpg'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="有機肥料、麻油粕" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">有機肥料、麻油粕</h3>
+                                <p class="text-gray-600 text-sm mb-4">「有機肥料」是維持土壤活力與作物健康的核心元素。</p>
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '有機肥料、麻油粕', 
+                                    images: [
+                                        './img/products/fertilizer-800(1).jpg',
+                                        './img/products/fertilizer-800(2).jpg',
+                                        './img/products/fertilizer-800(3).jpg'
+                                    ], 
+                                    description: '在永續農業和家庭園藝中，「有機肥料」是維持土壤活力與作物健康的核心元素。而在眾多有機肥料中，「麻油粕」作為一種傳統且高效的天然肥份，佔有重要的地位。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+						
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                './img/products/thumb/pesticide-400(1).jpg',
+                                './img/products/thumb/pesticide-400(2).jpg',
+                                './img/products/thumb/pesticide-400(3).jpg'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="驅蟲劑、殺蟲劑" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">驅蟲劑、殺蟲劑</h3>
+                                <p class="text-gray-600 text-sm mb-4">矽藻素和苦楝油是廣受歡迎的「物理性」與「天然植物性」防治資材，而傳統的化學殺蟲劑則提供快速直接的效果。</p>
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '驅蟲劑、殺蟲劑', 
+                                    images: [
+                                        './img/products/pesticide-800(1).jpg',
+                                        './img/products/pesticide-800(2).jpg',
+                                        './img/products/pesticide-800(3).jpg'
+                                    ], 
+                                    description: '在家庭園藝或農業生產中，當面臨蟲害問題時，我們有多種工具可以選擇。其中，矽藻素和苦楝油是廣受歡迎的「物理性」與「天然植物性」防治資材，而傳統的化學殺蟲劑則提供快速直接的效果。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+						
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                './img/products/thumb/phytonutrients-400(1).jpg',
+                                './img/products/thumb/phytonutrients-400(2).jpg'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="植物營養劑" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">植物營養劑</h3>
+                                <p class="text-gray-600 text-sm mb-4">除了陽光、空氣和水，充足的「養分」是關鍵。</p>
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '植物營養劑', 
+                                    images: [
+                                        './img/products/phytonutrients-800(1).jpg',
+                                        './img/products/phytonutrients-800(2).jpg'
+                                    ], 
+                                    description: '想讓植物長得健康茂盛，除了陽光、空氣和水，充足的「養分」是關鍵。市面上琳瑯滿目的「植物營養劑」，便是為了補充土壤中不足或植物在特定時期所需的養分而設計。',
                                     currentImage: 0 
                                 }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
