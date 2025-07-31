@@ -102,7 +102,7 @@
                     <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">打造您的專屬綠色角落</h1>
                     <p class="text-lg md:text-xl max-w-2xl mb-8">從土壤到工具，我們提供最優質的園藝資材，助您輕鬆實現園藝夢想。</p>
                     <a href="#products" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
-                        探索所有產品
+                        探索產品
                     </a>
                 </div>
             </section>
@@ -110,7 +110,7 @@
             <section id="products" class="py-20 bg-white">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">精選商品</h2>
-                    <p class="text-center text-gray-600 mb-12">我們精心挑選，只為給您最好的園藝體驗。</p>
+                    <p class="text-center text-gray-600 mb-12">我們精心挑選，只為給您最好的園藝體驗。<small style="color:red;">實際數量以現場為主</small></p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div x-data="{ 
@@ -194,14 +194,15 @@
                         <div x-data="{ 
                             currentImage: 0,
                             images: [
-                                'https://placehold.co/400x400/60a5fa/ffffff?text=Product+3.1',
-                                'https://placehold.co/400x400/60a5fa/ffffff?text=Product+3.2',
-                                'https://placehold.co/400x400/60a5fa/ffffff?text=Product+3.3'
+                                './img/products/thumb/water-400(1).jpg',
+                                './img/products/thumb/water-400(2).jpg',
+                                './img/products/thumb/water-400(3).jpg',
+                                './img/products/thumb/water-400(4).jpg'
                             ]
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="智慧自動澆水器" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="澆水器" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -213,16 +214,17 @@
                                 </div>
                             </div>
                             <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">智慧自動澆水器</h3>
-                                <p class="text-gray-600 text-sm mb-4">定時定量，出差旅行也不怕，讓植物時刻保持水潤。</p>
+                                <h3 class="text-xl font-semibold mb-2">澆水器</h3>
+                                <p class="text-gray-600 text-sm mb-4">為植物補充水分是園藝的基礎。</p>
                                 <button @click="isModalOpen = true; modal = { 
-                                    title: '智慧自動澆水器', 
+                                    title: '澆水器', 
                                     images: [
-                                        'https://placehold.co/800x800/60a5fa/ffffff?text=Detail+3.1',
-                                        'https://placehold.co/800x800/60a5fa/ffffff?text=Detail+3.2',
-                                        'https://placehold.co/800x800/60a5fa/ffffff?text=Detail+3.3'
+                                        './img/products/water-800(1).jpg',
+                                        './img/products/water-800(2).jpg',
+                                        './img/products/water-800(3).jpg',
+                                        './img/products/water-800(4).jpg'
                                     ], 
-                                    description: '再也不用擔心忘記澆水！這款智慧澆水器可設定澆水頻率與水量，精準滿足不同植物的需求。安裝簡單，適用於多種盆栽。是現代忙碌都市人的園藝好幫手。',
+                                    description: '最經典的代表。長長的壺嘴能伸入植物基部，直接澆灌土壤；若有蓮蓬頭（花灑頭），則能提供柔和、分散的水流，適合給幼苗或怕強力沖刷的植物使用。',
                                     currentImage: 0 
                                 }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
@@ -389,14 +391,16 @@
                         <div x-data="{ 
                             currentImage: 0,
                             images: [
-                                'https://placehold.co/400x400/4ade80/ffffff?text=Product+8.1',
-                                'https://placehold.co/400x400/4ade80/ffffff?text=Product+8.2',
-                                'https://placehold.co/400x400/4ade80/ffffff?text=Product+8.3'
+                                './img/products/thumb/net-400(1).jpg',
+                                './img/products/thumb/net-400(2).jpg',
+                                './img/products/thumb/net-400(3).jpg',
+                                './img/products/thumb/net-400(4).jpg',
+                                './img/products/thumb/net-400(5).jpg'
                             ]
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="植物爬藤架" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="萬能網、網底" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -408,16 +412,18 @@
                                 </div>
                             </div>
                             <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">植物爬藤架</h3>
-                                <p class="text-gray-600 text-sm mb-4">可自由組合造型，引導藤蔓植物生長，美化牆面。</p>
+                                <h3 class="text-xl font-semibold mb-2">萬能網、網底</h3>
+                                <p class="text-gray-600 text-sm mb-4">它們的核心概念是提供一個具備「過濾、隔離、支撐、通風」功能的多孔平面，並可根據需求輕易裁剪塑形。</p>
                                 <button @click="isModalOpen = true; modal = { 
-                                    title: '植物爬藤架', 
+                                    title: '萬能網、網底', 
                                     images: [
-                                        'https://placehold.co/800x800/4ade80/ffffff?text=Detail+8.1',
-                                        'https://placehold.co/800x800/4ade80/ffffff?text=Detail+8.2',
-                                        'https://placehold.co/800x800/4ade80/ffffff?text=Detail+8.3'
+                                        './img/products/net-800(1).jpg',
+                                        './img/products/net-800(2).jpg',
+                                        './img/products/net-800(3).jpg',
+                                        './img/products/net-800(4).jpg',
+                                        './img/products/net-800(5).jpg'
                                     ], 
-                                    description: '為您的攀藤植物打造一個家！此款爬藤架可依您的需求自由拼接組合，提供植物穩固的支撐，引導其向上生長，形成一道美麗的綠色牆面，為您的空間增添立體感。',
+                                    description: '在日常生活中，無論是園藝愛好者、DIY達人還是家庭主婦，都可能接觸到一種用途廣泛、經濟實惠的網狀材料，我們常稱之為「網底」或「萬能網」。',
                                     currentImage: 0 
                                 }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
@@ -572,6 +578,98 @@
                                         './img/products/phytonutrients-800(2).jpg'
                                     ], 
                                     description: '想讓植物長得健康茂盛，除了陽光、空氣和水，充足的「養分」是關鍵。市面上琳瑯滿目的「植物營養劑」，便是為了補充土壤中不足或植物在特定時期所需的養分而設計。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+						
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                './img/products/thumb/plate-400(1).jpg',
+                                './img/products/thumb/plate-400(2).jpg',
+                                './img/products/thumb/plate-400(3).jpg',
+                                './img/products/thumb/plate-400(4).jpg'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="水盤" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">水盤</h3>
+                                <p class="text-gray-600 text-sm mb-4">用來承接花盆底部流出多餘水分，防止弄濕家具或地板的簡單工具。</p>
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '水盤', 
+                                    images: [
+                                        './img/products/plate-800(1).jpg',
+                                        './img/products/plate-800(2).jpg',
+                                        './img/products/plate-800(3).jpg',
+                                        './img/products/plate-800(4).jpg'
+                                    ], 
+                                    description: '花盆水盤，也常被稱為底盤、托盤或接水盤，是園藝中最基礎也最容易被忽略的配件之一。它看似只是用來承接花盆底部流出多餘水分，防止弄濕家具或地板的簡單工具，但實際上，一個合適的水盤在植物養護中扮演著多重關鍵角色。',
+                                    currentImage: 0 
+                                }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+						
+                        <div x-data="{ 
+                            currentImage: 0,
+                            images: [
+                                './img/products/thumb/brick-400(1).jpg',
+                                './img/products/thumb/brick-400(2).jpg',
+                                './img/products/thumb/brick-400(3).jpg',
+                                './img/products/thumb/brick-400(4).jpg',
+                                './img/products/thumb/brick-400(5).jpg',
+                                './img/products/thumb/brick-400(6).jpg',
+                                './img/products/thumb/brick-400(7).jpg',
+                                './img/products/thumb/brick-400(8).jpg',
+                                './img/products/thumb/brick-400(9).jpg'
+                            ]
+                         }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
+                            <div class="relative w-full aspect-square">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <img :src="image" alt="水泥磚、越南磚" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                </template>
+                                <div class="absolute inset-0 flex justify-between items-center px-2">
+                                    <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">水泥磚、越南磚</h3>
+                                <p class="text-gray-600 text-sm mb-4">「磚」是塑造空間的基礎元素。</p>
+                                <button @click="isModalOpen = true; modal = { 
+                                    title: '水泥磚、越南磚', 
+                                    images: [
+                                        './img/products/brick-800(1).jpg',
+                                        './img/products/brick-800(2).jpg',
+                                        './img/products/brick-800(3).jpg',
+                                        './img/products/brick-800(4).jpg',
+                                        './img/products/brick-800(5).jpg',
+                                        './img/products/brick-800(6).jpg',
+                                        './img/products/brick-800(7).jpg',
+                                        './img/products/brick-800(8).jpg',
+                                        './img/products/brick-800(9).jpg'
+                                    ], 
+                                    description: '在建築、景觀和室內設計領域，「磚」是塑造空間的基礎元素。其中，「水泥磚」以其功能性和現代感成為最普及的建材之一；而「越南磚」則以其獨特的質樸與復古風格，在裝飾性鋪面上佔有一席之地。這兩者在材質、外觀、用途與風格上截然不同，代表了從實用結構到人文美學的兩種選擇。',
                                     currentImage: 0 
                                 }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
