@@ -110,7 +110,7 @@
             <section id="products" class="py-20 bg-white">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">精選商品</h2>
-                    <p class="text-center text-gray-600 mb-12">我們精心挑選，只為給您最好的園藝體驗。<small style="color:red;">實際數量以現場為主</small></p>
+                    <p class="text-center text-gray-600 mb-12">我們精心挑選，只為給您最好的園藝體驗。<br/><small style="color:red;">實際數量以現場為主</small></p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div x-data="{ 
@@ -123,7 +123,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="有機培養土" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="有機培養土" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -155,14 +155,14 @@
                         <div x-data="{ 
                             currentImage: 0,
                             images: [
-                                'https://placehold.co/400x400/9ca3af/ffffff?text=Product+2.1',
-                                'https://placehold.co/400x400/9ca3af/ffffff?text=Product+2.2',
-                                'https://placehold.co/400x400/9ca3af/ffffff?text=Product+2.3'
+                                './img/products/thumb/tool-400(1).jpg',
+                                './img/products/thumb/tool-400(2).jpg',
+                                './img/products/thumb/tool-400(3).jpg'
                             ]
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="不鏽鋼園藝工具組" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="園藝工具" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -174,16 +174,16 @@
                                 </div>
                             </div>
                             <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">不鏽鋼園藝工具組</h3>
-                                <p class="text-gray-600 text-sm mb-4">耐用防鏽，人體工學設計，包含鏟、耙、叉三件組。</p>
+                                <h3 class="text-xl font-semibold mb-2">園藝工具</h3>
+                                <p class="text-gray-600 text-sm mb-4">耐用，人體工學設計，包含鏟、耙、叉。</p>
                                 <button @click="isModalOpen = true; modal = { 
-                                    title: '不鏽鋼園藝工具組', 
+                                    title: '園藝工具', 
                                     images: [
-                                        'https://placehold.co/800x800/9ca3af/ffffff?text=Detail+2.1',
-                                        'https://placehold.co/800x800/9ca3af/ffffff?text=Detail+2.2',
-                                        'https://placehold.co/800x800/9ca3af/ffffff?text=Detail+2.3'
+                                        './img/products/tool-800(1).jpg',
+                                        './img/products/tool-800(2).jpg',
+                                        './img/products/tool-800(3).jpg'
                                     ], 
-                                    description: '此款三件式園藝工具組由高品質不鏽鋼打造，堅固耐用且不易生鏽。手柄採用人體工學設計，握感舒適，能減輕長時間工作的疲勞。無論是鬆土、除草還是移植，都能輕鬆應對。',
+                                    description: '手柄採用人體工學設計，握感舒適，能減輕長時間工作的疲勞。無論是鬆土、除草還是移植，都能輕鬆應對。',
                                     currentImage: 0 
                                 }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
@@ -202,7 +202,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="澆水器" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="澆水器" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -242,7 +242,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="精品陶瓷花盆" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="精品陶瓷花盆" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -281,7 +281,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="長效緩釋肥" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="長效緩釋肥" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -313,14 +313,14 @@
                         <div x-data="{ 
                             currentImage: 0,
                             images: [
-                                'https://placehold.co/400x400/f472b6/ffffff?text=Product+6.1',
-                                'https://placehold.co/400x400/f472b6/ffffff?text=Product+6.2',
-                                'https://placehold.co/400x400/f472b6/ffffff?text=Product+6.3'
+                                './img/products/thumb/scissors-400(1).jpg',
+                                './img/products/thumb/scissors-400(2).jpg',
+                                './img/products/thumb/scissors-400(3).jpg'
                             ]
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="造型修枝剪" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="造型修枝剪" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -333,15 +333,15 @@
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">造型修枝剪</h3>
-                                <p class="text-gray-600 text-sm mb-4">SK5高碳鋼刀頭，鋒利省力，適合盆景與花藝修剪。</p>
+                                <p class="text-gray-600 text-sm mb-4">鋒利省力，適合盆景與花藝修剪。</p>
                                 <button @click="isModalOpen = true; modal = { 
                                     title: '造型修枝剪', 
                                     images: [
-                                        'https://placehold.co/800x800/f472b6/ffffff?text=Detail+6.1',
-                                        'https://placehold.co/800x800/f472b6/ffffff?text=Detail+6.2',
-                                        'https://placehold.co/800x800/f472b6/ffffff?text=Detail+6.3'
+                                        './img/products/scissors-800(1).jpg',
+                                        './img/products/scissors-800(2).jpg',
+                                        './img/products/scissors-800(3).jpg'
                                     ], 
-                                    description: '一把好的剪刀能讓園藝工作事半功倍。我們的修枝剪採用日本SK5高碳鋼，刀口鋒利，剪切平整不傷枝條。輕巧的設計讓您能長時間使用而不感疲累，是修剪塑形的好幫手。',
+                                    description: '一把好的剪刀能讓園藝工作事半功倍。刀口鋒利，剪切平整不傷枝條。輕巧的設計讓您能長時間使用而不感疲累，是修剪塑形的好幫手。',
                                     currentImage: 0 
                                 }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
@@ -359,7 +359,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="天然椰纖塊" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="天然椰纖塊" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -400,7 +400,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="萬能網、網底" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="萬能網、網底" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -441,7 +441,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="發泡石、蛭石、火山石" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="發泡石、蛭石、火山石" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -480,7 +480,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="有機肥料、麻油粕" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="有機肥料、麻油粕" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -519,7 +519,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="驅蟲劑、殺蟲劑" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="驅蟲劑、殺蟲劑" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -557,7 +557,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="植物營養劑" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="植物營養劑" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -596,7 +596,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="水盤" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="水盤" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -642,7 +642,7 @@
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
                                 <template x-for="(image, index) in images" :key="index">
-                                    <img :src="image" alt="水泥磚、越南磚" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300" x-show="currentImage === index">
+                                    <img :src="image" alt="水泥磚、越南磚" class="absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-300" x-show="currentImage === index">
                                 </template>
                                 <div class="absolute inset-0 flex justify-between items-center px-2">
                                     <button @click="currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1" class="carousel-button bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 opacity-0 group-hover:opacity-100">
@@ -760,7 +760,7 @@
                 <div class="flex flex-col md:flex-row h-full">
                     <div class="relative w-full md:w-[70%] h-1/2 md:h-full bg-gray-200">
                         <template x-for="(image, index) in modal.images" :key="index">
-                            <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-300" 
+                            <div class="absolute inset-0 w-full h-full bg-contain bg-center bg-no-repeat transition-opacity duration-300" 
                                  :style="`background-image: url('${image}')`"
                                  x-show="modal.currentImage === index">
                             </div>
