@@ -96,7 +96,7 @@
         </header>
 
         <main>
-            <section id="home" class="relative h-[60vh] md:h-[80vh] bg-cover bg-top" style="background-image: url('./img/IMG_3927.webp');">
+            <section id="home" class="relative h-[60vh] md:h-[80vh] bg-cover bg-top" style="background-image: url('./img/cover.webp');">
                 <div class="absolute inset-0 bg-black bg-opacity-40"></div>
                 <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
                     <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">打造您的專屬綠色角落</h1>
@@ -110,7 +110,7 @@
             <section id="products" class="py-20 bg-white">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">精選商品</h2>
-                    <p class="text-center text-gray-600 mb-12">我們精心挑選，只為給您最好的園藝體驗。<br/><small style="color:red;">實際數量以現場為主</small></p>
+                    <p class="text-center text-gray-600 mb-12">只為給您最好的園藝體驗。<br/><small style="color:red;">實際數量以現場為主，更多商品請前往本店參觀</small></p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div x-data="{ 
@@ -235,9 +235,7 @@
                         <div x-data="{ 
                             currentImage: 0,
                             images: [
-                                'https://placehold.co/400x400/fcd34d/ffffff?text=Product+4.1',
-                                'https://placehold.co/400x400/fcd34d/ffffff?text=Product+4.2',
-                                'https://placehold.co/400x400/fcd34d/ffffff?text=Product+4.3'
+                                './img/products/thumb/flowerpot-400(1).jpg',
                             ]
                          }" class="bg-gray-50 rounded-lg shadow-lg overflow-hidden group">
                             <div class="relative w-full aspect-square">
@@ -255,15 +253,13 @@
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">精品陶瓷花盆</h3>
-                                <p class="text-gray-600 text-sm mb-4">簡約設計，高溫燒製，透氣性佳，提升居家品味。</p>
+                                <p class="text-gray-600 text-sm mb-4">簡約設計，高溫燒製，提升居家品味。</p>
                                 <button @click="isModalOpen = true; modal = { 
                                     title: '精品陶瓷花盆', 
                                     images: [
-                                        'https://placehold.co/800x800/fcd34d/ffffff?text=Detail+4.1',
-                                        'https://placehold.co/800x800/fcd34d/ffffff?text=Detail+4.2',
-                                        'https://placehold.co/800x800/fcd34d/ffffff?text=Detail+4.3'
+                                        './img/products/flowerpot-800(1).jpg',
                                     ], 
-                                    description: '我們的陶瓷花盆由資深工匠手工製作，經高溫燒製而成。不僅外型簡約優雅，能融入各種家居風格，其良好的透氣性更有助於植物根部健康生長。底部帶有排水孔，設計貼心實用。',
+                                    description: '外型簡約優雅，能融入各種家居風格。',
                                     currentImage: 0 
                                 }" class="w-full bg-green-100 text-green-800 font-semibold py-2 px-4 rounded-lg hover:bg-green-200 transition duration-300">
                                     查看詳情
@@ -684,15 +680,17 @@
                 <div class="container mx-auto px-6">
                     <div class="flex flex-col md:flex-row items-center gap-12">
                         <div class="md:w-1/2">
-                            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=2070&auto=format&fit=crop" alt="關於我們" class="rounded-lg shadow-xl w-full">
+                            <img src="./img/about.webp" alt="關於我們" class="rounded-lg shadow-xl w-full">
                         </div>
                         <div class="md:w-1/2">
                             <h2 class="text-3xl font-bold mb-4 text-gray-800">關於中南園藝資材</h2>
                             <p class="text-gray-600 mb-4 leading-relaxed">
-                                「中南園藝」不僅僅是一個品牌，它代表著我們對自然與生活的熱愛。我們相信，每個人心中都有一片嚮往的綠地。創立於2015年，我們致力於尋找並提供最優質、最實用的園藝資材，從專業農場到都市陽台，我們希望幫助每一位園藝愛好者，都能輕鬆地創造屬於自己的綠色空間。
+                                中南園藝資材位於台南市，成立於西元2003年。
+								秉持服務熱誠，為客戶朋友們提供園藝所需的各種資材，親手為自己的居住環境設計出個人風格，在挑選園藝資材及種植的過程中，也增加生活樂趣。
                             </p>
                             <p class="text-gray-600 leading-relaxed">
-                                我們的團隊由一群充滿熱情的園藝專家組成，我們親自測試每一項產品，確保它們的品質與效能。我們相信，好的工具與材料，是成功園藝的第一步。
+                                我們位於北區和緯路3段(花園夜市斜對面)，佔地有650坪，交通方便，園藝所需的材料應有盡有，歡迎有興趣的朋友蒞臨指教，參觀選購。
+								經銷各式花盆、園藝資材等繁多種類可供選購，歡迎建築師、建築商、景觀設計師、營造商、機關學校單位、飯店。
                             </p>
                         </div>
                     </div>
@@ -703,10 +701,10 @@
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">聯絡我們</h2>
                     <div class="max-w-4xl mx-auto bg-gray-50 p-8 rounded-lg shadow-lg">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="grid grid-cols-1">
                             <div>
                                 <h3 class="text-2xl font-semibold mb-4">取得聯繫</h3>
-                                <p class="text-gray-600 mb-6">有任何問題或合作提案嗎？歡迎透過以下方式與我們聯繫，我們將盡快回覆您。</p>
+                                <p class="text-gray-600 mb-6">有任何問題嗎？歡迎透過以下方式與我們聯繫，我們將盡快回覆您。</p>
                                 <div class="space-y-4">
                                     <p class="flex items-center">
                                         <svg class="w-5 h-5 mr-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -732,7 +730,7 @@
 
         <footer class="bg-gray-800 text-white py-8">
             <div class="container mx-auto px-6 text-center">
-                <p>中南園藝資材 &copy; 2024 | Powered by YUJ studio</p>
+                <p>中南園藝資材 &copy; <span id="current-year"></span> | Powered by YUJ studio</p>
             </div>
         </footer>
 
@@ -790,5 +788,9 @@
             </div>
         </div>
     </div>
+	<script>
+        // Set current year in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
