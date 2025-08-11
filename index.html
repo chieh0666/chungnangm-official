@@ -63,12 +63,22 @@
                         中南園藝資材
                     </a>
                     <nav class="hidden md:flex space-x-8">
-                        <a href="#home" class="text-gray-600 hover:text-green-700 transition duration-300">首頁</a>
-                        <a href="#products" class="text-gray-600 hover:text-green-700 transition duration-300">商品展示</a>
-                        <a href="#about" class="text-gray-600 hover:text-green-700 transition duration-300">關於我們</a>
-                        <a href="#contact" class="text-gray-600 hover:text-green-700 transition duration-300">聯絡我們</a>
+                        <a href="#home" class="text-gray-600 hover:text-green-700 transition duration-300 py-2">首頁</a>
+                        <a href="#products" class="text-gray-600 hover:text-green-700 transition duration-300 py-2">商品展示</a>
+                        <a href="#about" class="text-gray-600 hover:text-green-700 transition duration-300 py-2">關於我們</a>
+                        <a href="#contact" class="text-gray-600 hover:text-green-700 transition duration-300 py-2">聯絡我們</a>
+						<!--
+						<a href="#" class="bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105">
+							我要訂貨
+						</a>
+						-->
                     </nav>
                     <div class="md:hidden">
+						<!--
+						<a href="#" class="bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-6 me-5 rounded-full transition duration-300 transform hover:scale-105">
+							我要訂貨
+						</a>
+						-->
                         <button @click="isMenuOpen = !isMenuOpen" class="text-gray-600 focus:outline-none">
                             <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                 <path x-show="!isMenuOpen" d="M4 6h16M4 12h16m-7 6h7"></path>
